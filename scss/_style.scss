@@ -1,6 +1,6 @@
 $red: #FF0000;
 
-@media print, screen {
+// @media print, screen {
 
 	body * {
 		box-sizing: border-box;
@@ -16,7 +16,7 @@ $red: #FF0000;
 		width: (100% / 2);
 		height: 100%;
 		float: left;
-		padding: 2em;
+		padding: 3em;
 	}
 	#right {
 		width: (100% / 2);
@@ -24,7 +24,7 @@ $red: #FF0000;
 		float: right;
 		position: relative;
 	}
-	.paper {
+	#paper {
 		width: 29.7cm;
 		height: 21cm;
 	}
@@ -96,11 +96,18 @@ $red: #FF0000;
 			}
 		}
 	}
+// }
+// 
+#myHideFrame {
+	position: absolute;
+	top: -9999px;
+	width: 1px;
+	height: 1px;
 }
 
 @media screen {
 	body { background-image: url(img/bg.jpg) }
-	.paper {
+	#paper {
 		width: 29.7cm;
 		height: 21cm;
 		position: absolute;
@@ -120,16 +127,11 @@ $red: #FF0000;
 	}
 }
 @media print {
-	#panel { display: none }
-	#map-canvas { height: 21cm }
 	.group {
 		-webkit-print-color-adjust: exact;
 		-webkit-filter:opacity(1);
-			color: white;
-			background: black;
-			box-shadow: -4px 4px 0 $red;
-			display: inline-block;
-			padding: 0 .3em;
-			margin: 0;
-		}
+	}
+	#panel { display: none }
+	#map-canvas { height: 21cm }
+	@page { size: landscape }
 }

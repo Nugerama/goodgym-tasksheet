@@ -5,7 +5,9 @@
 <meta charset="utf-8">
 <title>Task Sheet</title>
 <link rel="stylesheet" type="text/css" href="style.css">
+<script type="text/javascript" src="js/html2canvas.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script>
 	var rendererOptions = {
 		draggable: true
@@ -68,7 +70,23 @@
 		miles = total * 0.621371192;
 		miles = Math.round( miles * 100 ) / 100;
 		document.getElementById('miles').innerHTML = '(' + miles + ' m)';
-		console.log( total );
+	}
+
+	function printCanvas() {
+		var element = document.getElementById("paper");
+		html2canvas(element, {
+			useCORS: true,
+			allowTaint: false,
+			onrendered: function(canvas) {
+				// document.body.appendChild(canvas);
+				
+				var image = new Image();
+				image.src = canvas.toDataURL("image/png");
+				// return image;
+				// document.body.appendChild(image);
+				SaveToDisk( image.src, 'image.jpg' );
+			}
+		});
 	}
 
 	google.maps.event.addDomListener(window, 'load', initialize);
@@ -76,10 +94,11 @@
 </script>
 </head>
 <body>
-	<div class="paper">
+	<div id="paper">
 		<div id="left">
 			<header>
 				<div id="task-details">
+				<button type="button" onclick="printCanvas()">Print!</button>
 					<h1>Task Sheet <span class="date">16.06.15</span></h1>
 					<h1 class="group">Hackney</h1>
 					<ul class="meta">

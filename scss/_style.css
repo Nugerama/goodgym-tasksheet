@@ -1,88 +1,94 @@
-@media print, screen {
-  body * {
-    box-sizing: border-box; }
+body * {
+  box-sizing: border-box; }
 
-  html, body, #map-canvas {
-    height: 100%;
-    margin: 0px;
-    padding: 0px;
-    font: normal normal normal 15px/1.5 'Adelle Sans', 'adellesans', Arial sans-serif; }
+html, body, #map-canvas {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+  font: normal normal normal 15px/1.5 'Adelle Sans', 'adellesans', Arial sans-serif; }
 
-  #left {
-    width: 50%;
-    height: 100%;
-    float: left;
-    padding: 2em; }
+#left {
+  width: 50%;
+  height: 100%;
+  float: left;
+  padding: 3em; }
 
-  #right {
-    width: 50%;
-    height: 100%;
-    float: right;
-    position: relative; }
+#right {
+  width: 50%;
+  height: 100%;
+  float: right;
+  position: relative; }
 
-  .paper {
-    width: 29.7cm;
-    height: 21cm; }
+#paper {
+  width: 29.7cm;
+  height: 21cm; }
 
-  h1, h2, h3 {
-    font: normal normal 400 1.62em/1.5 'LFT Etica', 'lft_etica', 'Arial Bold', Arial, sans-serif;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-transform: uppercase; }
+h1, h2, h3 {
+  font: normal normal 400 1.62em/1.5 'LFT Etica', 'lft_etica', 'Arial Bold', Arial, sans-serif;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase; }
 
-  #map-canvas {
+#map-canvas {
+  width: 100%;
+  height: 100%; }
+
+.section-title {
+  margin-top: 1.62em;
+  margin-bottom: 4px; }
+
+.boxed {
+  width: 100%;
+  border: 1px solid black;
+  box-shadow: -4px 4px 0 black;
+  box-sizing: border-box;
+  padding: 2em;
+  margin-bottom: 2em; }
+
+#panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 1.62em 1.62em 1em;
+  width: 100%;
+  box-sizing: border-box; }
+  #panel select, #panel input {
+    display: block;
     width: 100%;
-    height: 100%; }
+    margin-bottom: .62em;
+    font-size: 16px; }
 
-  .section-title {
-    margin-top: 1.62em;
+#task-details .group {
+  color: white;
+  background: black;
+  box-shadow: -4px 4px 0 red;
+  display: inline-block;
+  padding: 0 .3em;
+  margin: 0; }
+#task-details span {
+  float: right; }
+#task-details ul {
+  list-style: none;
+  padding-left: 0;
+  padding-right: 0; }
+  #task-details ul li {
+    clear: both;
+    line-height: 1.62;
     margin-bottom: 4px; }
 
-  .boxed {
-    width: 100%;
-    border: 1px solid black;
-    box-shadow: -4px 4px 0 black;
-    box-sizing: border-box;
-    padding: 2em;
-    margin-bottom: 2em; }
+#myHideFrame {
+  position: absolute;
+  top: -9999px;
+  width: 1px;
+  height: 1px; }
 
-  #panel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 5;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 1.62em 1.62em 1em;
-    width: 100%;
-    box-sizing: border-box; }
-    #panel select, #panel input {
-      display: block;
-      width: 100%;
-      margin-bottom: .62em;
-      font-size: 16px; }
-
-  #task-details .group {
-    color: white;
-    background: black;
-    box-shadow: -4px 4px 0 red;
-    display: inline-block;
-    padding: 0 .3em;
-    margin: 0; }
-  #task-details span {
-    float: right; }
-  #task-details ul {
-    list-style: none;
-    padding-left: 0;
-    padding-right: 0; }
-    #task-details ul li {
-      clear: both;
-      line-height: 1.62;
-      margin-bottom: 4px; } }
 @media screen {
   body {
     background-image: url(img/bg.jpg); }
 
-  .paper {
+  #paper {
     width: 29.7cm;
     height: 21cm;
     position: absolute;
@@ -100,18 +106,15 @@
   section[contenteditable=true] {
     background: rgba(0, 0, 0, 0.1); } }
 @media print {
+  .group {
+    -webkit-print-color-adjust: exact;
+    -webkit-filter: opacity(1); }
+
   #panel {
     display: none; }
 
   #map-canvas {
     height: 21cm; }
 
-  .group {
-    -webkit-print-color-adjust: exact;
-    -webkit-filter: opacity(1);
-    color: white;
-    background: black;
-    box-shadow: -4px 4px 0 red;
-    display: inline-block;
-    padding: 0 .3em;
-    margin: 0; } }
+  @page {
+    size: landscape; } }
