@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <title>Task Sheet</title>
 <link rel="stylesheet" type="text/css" href="style.css">
-<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=false"></script>
 <script>
 	var rendererOptions = {
 		draggable: true
@@ -19,7 +19,14 @@
 		var london = new google.maps.LatLng(51.518175, -0.127005);
 		var mapOptions = {
 			zoom:12,
-			center: london
+			center: london,
+			streetViewControl: false,
+			mapTypeControl: false,
+			zoomControl: true,
+			zoomControlOptions: {
+				style: google.maps.ZoomControlStyle.SMALL,
+				position: google.maps.ControlPosition.LEFT_CENTER
+			}
 		};
 		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 		directionsDisplay.setMap(map);

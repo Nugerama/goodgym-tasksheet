@@ -57,7 +57,14 @@
     left: 0;
     z-index: 5;
     background-color: rgba(0, 0, 0, 0.5);
-    padding: 5px; }
+    padding: 1.62em 1.62em 1em;
+    width: 100%;
+    box-sizing: border-box; }
+    #panel select, #panel input {
+      display: block;
+      width: 100%;
+      margin-bottom: .62em;
+      font-size: 16px; }
 
   #task-details .group {
     color: white;
