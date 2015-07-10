@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<title>Task Sheet</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+<script>
+	var directionsDisplay;
+	var directionsService = new google.maps.DirectionsService();
+	var map;
+
+	function initialize() {
+		directionsDisplay = new google.maps.DirectionsRenderer();
+		var london = new google.maps.LatLng(51.518175, -0.127005);
+		var mapOptions = {
+			zoom:12,
+			center: london
+		};
+		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+		directionsDisplay.setMap(map);
+	}
+
+	function calcRoute() {
+		var start = document.getElementById('start').value;
+		var end = document.getElementById('end').value;
+		var request = {
+			origin:start,
+			destination:end,
+			travelMode: google.maps.TravelMode.WALKING
+			};
+		directionsService.route(request, function(response, status) {
+			if (status == google.maps.DirectionsStatus.OK) {
+			directionsDisplay.setDirections(response);
+			}
+		});
+	}
+
+	google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+</head>
+<body>
+	<div class="paper">
+		<div id="left">
+			<header>
+				<img src="img/goodgym-logo.png" />
+				<div id="task-details">
+					<h1>Task Sheet <span class="date">16.06.15</span></h1>
+					<h1 class="group">Hackney</h1>
+					<ul class="meta">
+						<li>Distance<span class="dist" contenteditable="true">3k</span></li>
+						<li>Location<span class="loc" contenteditable="true">Dalston Curve Garden</span></li>
+						<li>Contact<span class="cont" contenteditable="true">Kevin 07985 085 279</span></li>
+					</ul>
+				</div>
+			</header>
+			<div id="info">
+				<h1 class="section-title">Task</h1>
+				<section class="boxed" contenteditable="true">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed odio dui.</section>
+				<h1 class="section-title">Why is it Good?</h1>
+				<section class="boxed" contenteditable="true">Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec ullamcorper nulla non metus auctor fringilla.</section>
+			</div>
+		</div><!-- #left -->
+		<div id="right">
+			<div id="panel">
+				<select id="start" onchange="calcRoute();">
+					<option value="E5+Bakehouse,+395,+Mentmore+Terrace,+London+E8+3PH,+United+Kingdom">Hackney (E5 Bakehouse)</option>
+					<option value="PAPA's,+10-17+Pulross+Road,+London+SW9+8AF">Lambeth (Papa's Park)</option>
+					<option value="University+of+Westminster">Westminster (University of Westminster</option>
+					<option value="Somers+Town+Community+Sports+Centre,+Kings+Cross,+London+NW1+1RX">Camden (Somers Town Community Sports Center</option>
+					<option value="London+Aquatics+Centre">Newham (London Aquatics Center)</option>
+				</select>
+				<input id="end" type="search" name="googlesearch" onchange="calcRoute();" placeholder="End">
+			</div>
+			<div id="map-canvas"></div>
+		</div><!-- #right -->
+	</div><!-- .paper -->
+
+</body>
+</html>
