@@ -6,16 +6,16 @@
     height: 100%;
     margin: 0px;
     padding: 0px;
-    font: normal normal normal 15px/1.5 Arial; }
+    font: normal normal normal 15px/1.5 'Adelle Sans' Arial sans-serif; }
 
   #left {
-    width: 66.66667%;
+    width: 50%;
     height: 100%;
     float: left;
     padding: 2em; }
 
   #right {
-    width: 33.33333%;
+    width: 50%;
     height: 100%;
     float: right;
     position: relative; }
@@ -25,14 +25,19 @@
     height: 21cm; }
 
   h1, h2, h3 {
-    font: normal normal 400 1.62em/1.5 "Arial Black", "Arial Bold", Gadget, sans-serif; }
+    font: normal normal 400 1.62em/1.5 'LFT Etica', 'Arial Bold', Arial, sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-transform: uppercase; }
 
-  header img, header #task-details {
-    float: left;
-    width: 50%;
-    padding: 2em; }
-    header img h1, header #task-details h1 {
-      margin: 0; }
+  header {
+    		/* img, #task-details {
+    			float: left;
+    			width: (100% / 2);
+    			padding: 2em;
+    
+    			h1 { margin: 0 }
+    		} */ }
 
   #map-canvas {
     width: 100%;
@@ -41,7 +46,7 @@
   .boxed {
     width: 100%;
     border: 1px solid black;
-    box-shadow: 4px 4px 4px black;
+    box-shadow: 4px 4px 0 black;
     box-sizing: border-box;
     padding: 2em;
     margin-bottom: 2em; }
@@ -55,7 +60,12 @@
     padding: 5px; }
 
   #task-details .group {
-    color: red; }
+    color: white;
+    background: black;
+    box-shadow: -4px 4px 0 red;
+    display: inline-block;
+    padding: 0 .3em;
+    margin: 0; }
   #task-details span {
     float: right; }
   #task-details ul {

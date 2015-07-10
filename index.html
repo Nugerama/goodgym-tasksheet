@@ -7,12 +7,15 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 <script>
+	var rendererOptions = {
+		draggable: true
+	};
 	var directionsDisplay;
 	var directionsService = new google.maps.DirectionsService();
 	var map;
 
 	function initialize() {
-		directionsDisplay = new google.maps.DirectionsRenderer();
+		directionsDisplay = new google.maps.DirectionsRenderer( rendererOptions );
 		var london = new google.maps.LatLng(51.518175, -0.127005);
 		var mapOptions = {
 			zoom:12,
@@ -20,6 +23,9 @@
 		};
 		map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 		directionsDisplay.setMap(map);
+		google.maps.event.addListener(directionsDisplay, 'directions_changed', function() {
+			computeTotalDistance(directionsDisplay.getDirections());
+		});
 	}
 
 	function calcRoute() {
@@ -37,6 +43,22 @@
 		});
 	}
 
+	function computeTotalDistance(result) {
+		var total = 0;
+		var myroute = result.routes[0];
+		for (var i = 0; i < myroute.legs.length; i++) {
+			total += myroute.legs[i].distance.value;
+		}
+		total = total / 1000.0;
+		total = Math.round( total * 100 ) / 100;
+		document.getElementById('km').innerHTML = total + ' km';
+
+		miles = total * 0.621371192;
+		miles = Math.round( miles * 100 ) / 100;
+		document.getElementById('miles').innerHTML = '(' + miles + ' m)';
+		console.log( total );
+	}
+
 	google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
@@ -45,14 +67,14 @@
 	<div class="paper">
 		<div id="left">
 			<header>
-				<img src="img/goodgym-logo.png" />
+				<!-- <img src="img/goodgym-logo.png" /> -->
 				<div id="task-details">
 					<h1>Task Sheet <span class="date">16.06.15</span></h1>
 					<h1 class="group">Hackney</h1>
 					<ul class="meta">
-						<li>Distance<span class="dist" contenteditable="true">3k</span></li>
-						<li>Location<span class="loc" contenteditable="true">Dalston Curve Garden</span></li>
-						<li>Contact<span class="cont" contenteditable="true">Kevin 07985 085 279</span></li>
+						<li>Distance<span id="miles"></span><span id="km"></span></li>
+						<li>Location<span id="loc" contenteditable="true">Dalston Curve Garden</span></li>
+						<li>Contact<span id="cont" contenteditable="true">Kevin 07985 085 279</span></li>
 					</ul>
 				</div>
 			</header>
